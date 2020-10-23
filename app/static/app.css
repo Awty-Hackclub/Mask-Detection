@@ -48,3 +48,6 @@ body {
     padding-top: 20px;
     padding-left: 3rem;
 }
+.app {
+    display: grid;
+}
