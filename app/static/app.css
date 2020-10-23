@@ -15,7 +15,12 @@ body {
 .real-time-list {
     color: white;
     list-style: none;
-
+}
+.real-time-list li {
+    color: #00FF75;
+}
+.real-time-list li h1 {
+    font-size: 16px;
 }
 
 .side-nav {
@@ -35,4 +40,5 @@ body {
     overflow-x: hidden;
     /* Disable horizontal scroll */
     padding-top: 20px;
+    padding-left: 3rem;
 }
