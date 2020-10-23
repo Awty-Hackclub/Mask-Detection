@@ -3,10 +3,11 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-/* .wearing-mask {
+.wearing-mask .yes {
     color: #00FF75;
     text-align: center;
-} */
+}
+
 .real-time-update {
     color: white;
 }
