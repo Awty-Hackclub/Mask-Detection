@@ -3,17 +3,22 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.wearing-mask .yes {
-    color: #00FF75;
-    text-align: center;
+.wearing-mask {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
+.yes {
+    color: #00FF75;
+}
+.no {
+    color: #F20000 ;
+}
 .real-time-update {
     color: white;
 }
 
 .real-time-list {
-    color: white;
     list-style: none;
 }
 .real-time-list li {
