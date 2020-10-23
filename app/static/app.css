@@ -4,10 +4,7 @@ body {
 }
 
 .wearing-mask {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    right: 150px;
+    text-align: center;
 }
 .yes {
     color: #00FF75;
@@ -30,6 +27,7 @@ body {
 }
 
 .side-nav {
+    grid-area: side-nav;
     height: 100%;
     /* Full-height: remove this if you want "auto" height */
     width: 400px;
@@ -50,4 +48,10 @@ body {
 }
 .app {
     display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "side-nav content"
+}
+
+.content {
+    grid-area: grid;
 }
