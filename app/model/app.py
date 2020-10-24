@@ -3,12 +3,10 @@ from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.models import load_model
 from imutils.video import VideoStream
 import numpy as np
-import argparse
 import imutils
 import time
 import cv2
 import os
-from imutils.video import VideoStream
 from flask import Response
 from flask import Flask
 from flask import render_template
@@ -16,7 +14,6 @@ import threading
 import datetime
 import imutils
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 outputFrame = None
 lock = threading.Lock()
 # initialize a flask object
