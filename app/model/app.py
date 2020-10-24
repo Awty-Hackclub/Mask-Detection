@@ -16,7 +16,7 @@ import threading
 import datetime
 import imutils
 
-os.environ['TF_CPP_MIN_LOG_LEVEL']='3'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 
 outputFrame = None
@@ -28,10 +28,12 @@ app = Flask(__name__, template_folder="templates")
 vs = VideoStream(src=0).start()
 time.sleep(2.0)
 
+
 @app.route("/")
 def index():
-	# return the rendered template
-	return render_template("index.html")
+    # return the rendered template
+    return render_template("index.html")
+
 
 print("[INFO] loading face detector model...")
 prototxtPath = os.path.sep.join(["face_detector", "deploy.prototxt"])
@@ -46,7 +48,7 @@ maskNet = load_model("mask_detector.model")
 
 
 def detect_and_predict_mask(frame):
-    
+
     # grab the dimensions of the frame and then construct a blob
     # from it
     (h, w) = frame.shape[:2]
@@ -111,87 +113,87 @@ def detect_and_predict_mask(frame):
 # initialize the video stream and allow the camera sensor to warm up
 
 # loop over the frames from the video stream
+
+
 def detect():
-	global vs, outputFrame, lock
-	while True:
-		
-		# grab the frame from the threaded video stream and resize it
-		# to have a maximum width of 400 pixels
-		frame = vs.read()
-		frame = imutils.resize(frame, width=400)
+    global vs, outputFrame, lock
+    while True:
 
-		# detect faces in the frame and determine if they are wearing a
-		# face mask or not
-		(locs, preds) = detect_and_predict_mask(frame)
+        # grab the frame from the threaded video stream and resize it
+        # to have a maximum width of 400 pixels
+        frame = vs.read()
+        frame = imutils.resize(frame, width=400)
 
-		# loop over the detected face locations and their corresponding
-		# locations
-		for (box, pred) in zip(locs, preds):
-			# unpack the bounding box and predictions
-			(startX, startY, endX, endY) = box
-			(mask, withoutMask) = pred
+        # detect faces in the frame and determine if they are wearing a
+        # face mask or not
+        (locs, preds) = detect_and_predict_mask(frame)
 
-			# determine the class label and color we'll use to draw
-			# the bounding box and text
-			label = "Mask" if mask > withoutMask else "No Mask"
-			color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
+        # loop over the detected face locations and their corresponding
+        # locations
+        for (box, pred) in zip(locs, preds):
+            # unpack the bounding box and predictions
+            (startX, startY, endX, endY) = box
+            (mask, withoutMask) = pred
 
-			# include the probability in the label
-			label = "{}: {:.2f}%".format(label, max(mask, withoutMask) * 100)
+            # determine the class label and color we'll use to draw
+            # the bounding box and text
+            label = "Mask" if mask > withoutMask else "No Mask"
+            color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
 
-			# display the label and bounding box rectangle on the output
-			# frame
-			cv2.putText(
-				frame,
-				label,
-				(startX, startY - 10),
-				cv2.FONT_HERSHEY_SIMPLEX,
-				0.45,
-				color,
-				2,
-			)
-			cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
-		
-		with lock:
-			outputFrame = frame.copy()
+            # include the probability in the label
+            label = "{}: {:.2f}%".format(label, max(mask, withoutMask) * 100)
+
+            # display the label and bounding box rectangle on the output
+            # frame
+            cv2.putText(
+                frame,
+                label,
+                (startX, startY - 10),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.45,
+                color,
+                2,
+            )
+            cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
+
+        with lock:
+            outputFrame = frame.copy()
+
 
 def generate():
-	global outputFrame, lock
-	# grab global references to the output frame and lock variables
-	# loop over frames from the output stream
-	while True:
-		# wait until the lock is acquired
-		with lock:
-			# check if the output frame is available, otherwise skip
-			# the iteration of the loop
-			if outputFrame is None:
-				continue
-			# encode the frame in JPEG format
-			(flag, encodedImage) = cv2.imencode(".jpg", outputFrame)
-			# ensure the frame was successfully encoded
-			if not flag:
-				continue
-		# yield the output frame in the byte format
-		yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + 
-			bytearray(encodedImage) + b'\r\n')
+    global outputFrame, lock
+    # grab global references to the output frame and lock variables
+    # loop over frames from the output stream
+    while True:
+        # wait until the lock is acquired
+        with lock:
+            # check if the output frame is available, otherwise skip
+            # the iteration of the loop
+            if outputFrame is None:
+                continue
+            # encode the frame in JPEG format
+            (flag, encodedImage) = cv2.imencode(".jpg", outputFrame)
+            # ensure the frame was successfully encoded
+            if not flag:
+                continue
+        # yield the output frame in the byte format
+        yield(b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
+              bytearray(encodedImage) + b'\r\n')
+
 
 @app.route("/video_feed")
 def video_feed():
-	# return the response generated along with the specific media
-	# type (mime type)
-	return Response(generate(),
-		mimetype = "multipart/x-mixed-replace; boundary=frame")
-
+    # return the response generated along with the specific media
+    # type (mime type)
+    return Response(generate(),
+                    mimetype="multipart/x-mixed-replace; boundary=frame")
 
 
 # check to see if this is the main thread of execution
 if __name__ == '__main__':
-	t = threading.Thread(target=detect)
-	t.daemon = True
-	t.start()
+    t = threading.Thread(target=detect)
+    t.daemon = True
+    t.start()
 
-	app.run(host="0.0.0.0", port=8000, debug=True,
-		threaded=True, use_reloader=False)
-
-    
-    
+    app.run(host="0.0.0.0", port=8000, debug=True,
+            threaded=True, use_reloader=False)
