@@ -5,9 +5,6 @@ body {
 
 .wearing-mask {
     text-align: center;
-    display: flex;
-    text-align: center;
-    justify-content: center;
 }
 .yes {
     color: #00FF75;
@@ -29,25 +26,37 @@ body {
     font-size: 16px;
 }
 
-.app {
+/* .app {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "side-nav content"
-}
+} */
 
-.app {
+/* .app {
     grid-area: grid;
-}
-.side-nav {
+} */
+/* .side-nav {
     grid-area: side-nav;
-    background-color: red;
+    background-color: rgb(30, 30, 30);
     height: 100%;
     width: 400px;
     position: absolute;
-}
-#status {
+    
+} */
+/* #status {
     text-align: center;
 }
-.container {
+.content {
     display: flex;
+    flex-direction: row;
+} */
+video {
+    background-color: red;
+    margin-top: 5rem;
+}
+.video {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
