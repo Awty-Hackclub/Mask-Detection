@@ -8,10 +8,6 @@ body {
     text-align: center;
 }
 
-.model {
-    text-align: center;
-}
-
 .video {
     display: flex;
     flex-direction: column;
