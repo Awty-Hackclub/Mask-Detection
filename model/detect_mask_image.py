@@ -32,7 +32,6 @@ def detect_and_predict_mask(frame):
 	# load the input image from disk, clone it, and grab the image spatial
 	# dimensions
 	image = cv2.imread(frame)
-	orig = image.copy()
 	(h, w) = image.shape[:2]
 
 	# construct a blob from the image
@@ -78,21 +77,14 @@ def detect_and_predict_mask(frame):
 
 			# determine the class label and color we'll use to draw
 			# the bounding box and text
-			label = "Mask" if mask > withoutMask else "No Mask"
-			color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
+			label = "mask" if mask > withoutMask else "no mask"
 
 			# include the probability in the label
-			label = "{}: {:.2f}%".format(label, max(mask, withoutMask) * 100)
+			label_ = "{}: {:.2f}%".format(label, max(mask, withoutMask) * 100)
 
 			# display the label and bounding box rectangle on the output
 			# frame
-			cv2.putText(image, label, (startX, startY - 10),
-				cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
-			cv2.rectangle(image, (startX, startY), (endX, endY), color, 2)
-
-	# show the output image
-	cv2.imshow("Output", image)
-	cv2.waitKey(0)
+	return label
 
 ### CHANGE THE INPUT IMAGE
 print(detect_and_predict_mask("quick_test_images/pic3.jpg"))
