@@ -5,6 +5,9 @@ body {
 
 .wearing-mask {
     text-align: center;
+    display: flex;
+    text-align: center;
+    justify-content: center;
 }
 .yes {
     color: #00FF75;
@@ -32,10 +35,9 @@ body {
     grid-template-areas: "side-nav content"
 }
 
-.content {
+.app {
     grid-area: grid;
 }
-
 .side-nav {
     grid-area: side-nav;
     background-color: red;
@@ -45,4 +47,7 @@ body {
 }
 #status {
     text-align: center;
+}
+.container {
+    display: flex;
 }
