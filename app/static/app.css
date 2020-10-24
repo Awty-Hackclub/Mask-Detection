@@ -5,6 +5,7 @@ body {
 
 .wearing-mask {
     text-align: center;
+    font-size: 5rem;
 }
 .yes {
     color: #00FF75;
@@ -51,8 +52,8 @@ body {
     flex-direction: row;
 } */
 video {
-    margin-top: 5rem;
-    width: 40%;
+    margin-top: 2rem;
+    width: 50%;
     border-radius: 50px;
 }
 .video {
