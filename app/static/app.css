@@ -70,6 +70,9 @@ video {
     color: black;
     border: none;
     padding: 2rem;
+    font-size: large;
+    font-weight: bold;
+    margin-left: 1rem;
 }
 .start {
     background-color: #00FF75;
