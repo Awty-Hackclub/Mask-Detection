@@ -9,6 +9,10 @@ Web Application that detects whether the end user is wearing a mask or not. (sub
 - OpenCV
 - Flask
 
+## Deep learning
+
+The model for the face detection was already pretrained with a dataset of people wearing/not wearing masks.
+
 ## Run Instructions
 
 1. `cd app/model`
