@@ -6,14 +6,13 @@ body {
 .title {
     color: #00FF75;
     text-align: center;
-    margin-left: 0%;
-    font-size: xx-large;
+    font-size: 5rem;
 }
 
 .video {
     background-color: red;
-    width: 72%;
-    border-radius: 30px;
+    width: 75%;
+    border-radius: 40px;
 }
 .container {
     display: flex;
