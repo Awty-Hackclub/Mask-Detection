@@ -17,8 +17,6 @@ import datetime
 import imutils
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-
-
 outputFrame = None
 lock = threading.Lock()
 # initialize a flask object
@@ -48,7 +46,10 @@ maskNet = load_model("mask_detector.model")
 
 
 def detect_and_predict_mask(frame):
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2c8501416d2fdcc6bd250599768d8b9f6a1a4ff4
     # grab the dimensions of the frame and then construct a blob
     # from it
     (h, w) = frame.shape[:2]
