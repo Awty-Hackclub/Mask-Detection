@@ -3,6 +3,15 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.title {
+    color: #00FF75;
+    text-align: center;
+}
+
+.model {
+    text-align: center;
+}
+
 /* .wearing-mask {
     text-align: center;
     font-size: 5rem;
