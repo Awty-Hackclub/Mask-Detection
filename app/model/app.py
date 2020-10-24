@@ -20,12 +20,10 @@ app = Flask(__name__, template_folder="templates")
 vs = VideoStream(src=0).start()
 time.sleep(2.0)
 
-
 @app.route("/")
 def index():
     # return the rendered template
     return render_template("index.html")
-
 
 print("[INFO] loading face detector model...")
 prototxtPath = os.path.sep.join(["face_detector", "deploy.prototxt"])
@@ -36,7 +34,6 @@ faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
 
 print("[INFO] loading face mask detector model...")
 maskNet = load_model("mask_detector.model")
-
 
 def detect_and_predict_mask(frame):
     (h, w) = frame.shape[:2]
