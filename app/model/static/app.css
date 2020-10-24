@@ -5,8 +5,8 @@ body {
 
 .title {
     color: #00FF75;
-    text-align: left;
-    margin-left: 20%;
+    text-align: center;
+    margin-left: 0%;
     font-size: xx-large;
 }
 
@@ -17,6 +17,8 @@ body {
 .container {
     display: flex;
     flex-direction: column;
-    align-items: left;
-    justify-content: left;
+    align-items: center;
+    justify-content: center;
+    width: 1200px;
+    margin: 0 auto;
 }
