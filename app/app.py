@@ -1,10 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from model import detect_mask_image as detect
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def main():
+    image = request.files['image']
+    is_masked = detect.detect_and_predict_mask(image)
     return render_template('index.html')
 
 
