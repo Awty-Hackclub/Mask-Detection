@@ -12,7 +12,8 @@ body {
 
 .video {
     background-color: red;
-    width: 50%;
+    width: 65%;
+    border-radius: 30px;
 }
 .container {
     display: flex;
