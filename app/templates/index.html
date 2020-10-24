@@ -11,45 +11,7 @@
 </head>
 <body>
     <div class="app">
-        <div class="content">
-            <div class="video">
-                <h1 id="status" class="wearing-mask yes">MASK DETECTED</h1>
-                <video autoplay="true" id="videoElement" class="camera"></video>
-            </div>
-            <!-- <div class="side-nav">
-                <h1 class="real-time-update">Real Time Update</h1>
-                <ul class="real-time-list">
-                    <li class="list-items"><span>Detected</span> |
-                    Time: 3:20PM</li>
-                    <li class="list-items"><span>Detected</span> |
-                    Time: 3:20PM</li>
-                    <li class="list-items"><span>Detected</span> |
-                    Time: 3:20PM</li>
-                    <li class="list-items"><span>Detected</span> |
-                    Time: 3:20PM</li>
-                    <li class="list-items"><span>Detected</span> |
-                    Time: 3:20PM</li>
-                </ul>
-            </div> -->
-            <!-- <div class="buttons">
-                <button class="button start" id="start">Start</button>
-                <button class="button stop" id="stop">Stop</button>
-            </div> -->
-        </div>
+        <img src="{{ url_for('video_feed') }}">
     </div>
-
-    <script>
-        var video = document.querySelector("#videoElement");
-
-        if (navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(function (stream) {
-            video.srcObject = stream;
-            })
-            .catch(function (err0r) {
-            console.log("Something went wrong!");
-            });
-        }
-    </script>
 </body>
 </html>
