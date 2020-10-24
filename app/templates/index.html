@@ -14,7 +14,7 @@
         <div class="content">
             <div class="video">
                 <h1 id="status" class="wearing-mask yes">MASK DETECTED</h1>
-                <video autoplay="true" class="camera"></video>
+                <video autoplay="true" id="videoElement" class="camera"></video>
             </div>
             <!-- <div class="side-nav">
                 <h1 class="real-time-update">Real Time Update</h1>
@@ -33,5 +33,19 @@
             </div> -->
         </div>
     </div>
+
+    <script>
+        var video = document.querySelector("#videoElement");
+
+        if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+            video.srcObject = stream;
+            })
+            .catch(function (err0r) {
+            console.log("Something went wrong!");
+            });
+        }
+    </script>
 </body>
 </html>
