@@ -85,6 +85,3 @@ def detect_and_predict_mask(frame):
 			# display the label and bounding box rectangle on the output
 			# frame
 	return label
-
-### CHANGE THE INPUT IMAGE
-print(detect_and_predict_mask("quick_test_images/pic3.jpg"))
