@@ -6,9 +6,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
+    return render_template('index.html')
+
+
+@app.route('/api')
+def api():
     image = request.files['image']
     is_masked = detect.detect_and_predict_mask(image)
-    return render_template('index.html')
 
 
 if __name__ == '__main__':
